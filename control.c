@@ -7,8 +7,6 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
-  printf("%s\n", argv[1]);
-
   if (strcmp(argv[1], "-c") == 0) {
     create();
   }
@@ -79,6 +77,7 @@ void rem() {
   char text[sb.st_size];
 
   read(file, text, sb.st_size);
+
+  printf("Here's all the stuff in the file:\n");
   printf("%s\n", text);
-  printf("rem success!\n");
 }
