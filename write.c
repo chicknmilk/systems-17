@@ -27,8 +27,22 @@ int main() {
   int str = read(fd, line, 1024);
   line[*data] = '\0';
 
-  //print the last line
+  // print the last line
   printf("%s\n", line);
 
 
+  // find new line
+  char new_data[1024];
+  printf("Enter new line: ");
+  fgets(new_data, 1024, stdin);
+  
+  lseek(fd, 0, SEEK_END);
+  write(fd, new_data, strlen(new_data));
+  printf("wrote to file");
+
+  shmdt(data);
+  sb.sem_op = 1;
+  semop(semd, &sb, 1);
+
+  return 0;
 }
