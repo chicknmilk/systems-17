@@ -20,54 +20,28 @@ int main() {
   // open file
   int fd = open("temp.txt", O_RDWR | O_APPEND);
 
-  struct stat st;
-  stat("temp.txt", &st);
+  // use lseek to move to the end of the file
+  lseek(fd, *data, SEEK_END);
 
-  // // use lseek to move to the end of the file
-  // lseek(fd, *data, SEEK_END);
+  char line[1024];
+  int str = read(fd, line, 1024);
+  line[*data] = '\0';
 
-  // char line[1024];
-  // int str = read(fd, line, 1024);
-  // line[*data] = '\0';
-
-  // // print the last line
-  // printf("%s\n", line);
+  // print the last line
+  printf("%s\n", line);
 
 
-  // // find new line
-  // char new_data[1024];
-  // printf("Enter new line: ");
-  // fgets(new_data, 1024, stdin);
-  
-  // lseek(fd, 0, SEEK_END);
-  // write(fd, new_data, strlen(new_data));
-  // *data = strlen(new_data);
-  // printf("wrote to file %s\n", new_data);
+  // use fgets to read a string from stdin
+  char new_data[1024];
 
-  // // use fgets to read a string from stdin
-  // char new_data[1024];
+  printf("Enter new line: ");
+  fgets(new_data, 1024, stdin);
 
-  // printf("Enter new line: ");
-  // fgets(new_data, 1024, stdin);
-
-  // // append new_data to the end of the file
-  // // lseek(fd, 0, SEEK_END);
-  // write(fd, new_data, strlen(new_data));
-  // *data = strlen(new_data);
-  // printf("wrote to file %s\n", new_data);
-
-  printf("WHAT IS HAPPENING %s\n", data);
-
-  lseek(fd, -(*data), SEEK_END);
-  char *buffer = calloc(1024, sizeof(char));
-  read(fd, buffer, 1024);
-  printf("Current line: %s\n", buffer);
-  printf("Input new line, max length %d chars: ", 1024);
-  fgets(buffer, 1024, stdin);
+  // append new_data to the end of the file
   lseek(fd, 0, SEEK_END);
-  write(fd, buffer, strlen(buffer));
-  *data = strlen(buffer);
-  printf("Wrote to file!\n");
+  write(fd, new_data, strlen(new_data));
+  *data = strlen(new_data);
+  printf("wrote to file %s\n", new_data);
 
 
   shmdt(data);
