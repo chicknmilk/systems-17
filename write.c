@@ -38,6 +38,7 @@ int main() {
   
   lseek(fd, 0, SEEK_END);
   write(fd, new_data, strlen(new_data));
+  *data = strlen(new_data);
   printf("wrote to file %s\n", new_data);
 
   shmdt(data);
