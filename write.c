@@ -28,7 +28,7 @@ int main() {
   line[*data] = '\0';
 
   //print the last line
-  printf("%s\n", last);
+  printf("%s\n", line);
 
 
 }
