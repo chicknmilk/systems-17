@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     create();
   }
   else if (argv[1] == '-r') {
-    remove();
+    rem();
   }
 
   return 0;
@@ -49,7 +49,7 @@ void create() {
   close(file);
 }
 
-void remove() {
+void rem() {
   printf("removing file\n");
 
   int semd = semget(SEMKEY, 0, 0);

@@ -22,4 +22,4 @@ union semun {
 };
 
 void create();
-void remove();
+void rem();
