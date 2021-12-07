@@ -44,6 +44,8 @@ void create() {
   }
 
   close(file);
+
+  printf("create success!");
 }
 
 void rem() {
@@ -78,4 +80,5 @@ void rem() {
 
   read(file, text, sb.st_size);
   printf("%s\n", text);
+  printf("rem success!\n");
 }
