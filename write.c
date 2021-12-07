@@ -21,7 +21,7 @@ int main() {
   int fd = open("temp.txt", O_RDWR | O_APPEND);
 
   // use lseek to move to the end of the file
-  lseek(fd, *data, SEEK_END);
+  lseek(fd, -*data, SEEK_END);
 
   char line[1024];
   int str = read(fd, line, 1024);
