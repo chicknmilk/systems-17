@@ -21,9 +21,11 @@ int main() {
   int fd = open("temp.txt", O_RDWR | O_APPEND);
 
   // use lseek to move to the end of the file
-  lseek(fd, 0, SEEK_END);
-  // read the last line in the file
-  char *last = data + strlen(data) - 1;
+  lseek(fd, *data, SEEK_END);
+
+  char line[1024];
+  int str = read(fd, line, 1024);
+  line[*data] = '\0';
 
   //print the last line
   printf("%s\n", last);
