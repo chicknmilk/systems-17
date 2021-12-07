@@ -34,15 +34,27 @@ int main() {
   printf("%s\n", line);
 
 
-  // find new line
-  char new_data[1024];
-  printf("Enter new line: ");
-  fgets(new_data, 1024, stdin);
+  // // find new line
+  // char new_data[1024];
+  // printf("Enter new line: ");
+  // fgets(new_data, 1024, stdin);
   
+  // lseek(fd, 0, SEEK_END);
+  // write(fd, new_data, strlen(new_data));
+  // *data = strlen(new_data);
+  // printf("wrote to file %s\n", new_data);
+
+  // use fgets to read a string from stdin
+  char new_data[1024];
+  fgets(new_data, 1024, stdin);
+
+  // append new_data to the end of the file
   lseek(fd, 0, SEEK_END);
   write(fd, new_data, strlen(new_data));
   *data = strlen(new_data);
   printf("wrote to file %s\n", new_data);
+  
+
 
   shmdt(data);
   sb.sem_op = 1;
