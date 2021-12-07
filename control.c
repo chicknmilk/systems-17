@@ -24,8 +24,7 @@ void create() {
 
   int semd = semget(SEMKEY, 1, IPC_CREAT | IPC_EXCL | 0644);
   if (semd == -1) {
-    printf("semget failed\n");
-    return;
+    semd = semget(SEMKEY, 1, 0);
   }
 
   union semun us;
@@ -36,14 +35,12 @@ void create() {
   // create the shared memory segment
   int shmd = shmget(SHMKEY, sizeof(int), IPC_CREAT | IPC_EXCL | 0644);
   if (shmd == -1) {
-    printf("shmget failed\n");
-    return;
+    shmd = shmget(SHMKEY, 0, 0);
   }
 
   int file = open("tmp.txt", O_CREAT | O_EXCL | O_TRUNC, 0644);
   if (file == -1) {
-    printf("open failed\n");
-    return;
+    file = open("tmp.txt", O_RDWR);
   }
 
   close(file);
@@ -54,8 +51,7 @@ void rem() {
 
   int semd = semget(SEMKEY, 0, 0);
   if (semd == -1) {
-    printf("semget failed\n");
-    return;
+    semd = semget(SEMKEY, 1, 0);
   }
 
   // remove the shared memory segment
@@ -63,8 +59,7 @@ void rem() {
 
   int shmd = shmget(SHMKEY, 0, 0);
   if (shmd == -1) {
-    printf("shmget failed\n");
-    return;
+    shmd = shmget(SHMKEY, 1, 0);
   }
 
   shmctl(shmd, IPC_RMID, 0);
