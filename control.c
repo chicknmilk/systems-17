@@ -9,10 +9,10 @@ int main(int argc, char *argv[]) {
 
   printf("%s\n", argv[1]);
 
-  if (argv[1][1] == '-c') {
+  if (strcmp(argv[1], "-c") == 0) {
     create();
   }
-  else if (argv[1][1] == '-r') {
+  else if (strcmp(argv[1], "-r") == 0) {
     rem();
   }
 
