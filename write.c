@@ -44,17 +44,28 @@ int main() {
   // *data = strlen(new_data);
   // printf("wrote to file %s\n", new_data);
 
-  // use fgets to read a string from stdin
-  char new_data[1024];
+  // // use fgets to read a string from stdin
+  // char new_data[1024];
 
-  printf("Enter new line: ");
-  fgets(new_data, 1024, stdin);
+  // printf("Enter new line: ");
+  // fgets(new_data, 1024, stdin);
 
-  // append new_data to the end of the file
-  // lseek(fd, 0, SEEK_END);
-  write(fd, new_data, strlen(new_data));
-  *data = strlen(new_data);
-  printf("wrote to file %s\n", new_data);
+  // // append new_data to the end of the file
+  // // lseek(fd, 0, SEEK_END);
+  // write(fd, new_data, strlen(new_data));
+  // *data = strlen(new_data);
+  // printf("wrote to file %s\n", new_data);
+
+  lseek(fd, -(*data), SEEK_END);
+  char *buffer = calloc(1024, sizeof(char));
+  read(fd, buffer, 1024);
+  printf("Current line: %s\n", buffer);
+  printf("Input new line, max length %d chars: ", 1024);
+  fgets(buffer, 1024, stdin);
+  lseek(fd, 0, SEEK_END);
+  write(fd, buffer, strlen(buffer));
+  *data = strlen(buffer);
+  printf("Wrote to file!\n");
 
 
 
