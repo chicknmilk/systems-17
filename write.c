@@ -28,7 +28,7 @@ int main() {
   line[*data] = '\0';
 
   // print the last line
-  printf("The previous entered line is: %s\n", line);
+  printf("The previous entered line is: %s\n", data);
 
 
   // use fgets to read a string from stdin
