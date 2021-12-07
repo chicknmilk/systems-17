@@ -56,6 +56,8 @@ int main() {
   // *data = strlen(new_data);
   // printf("wrote to file %s\n", new_data);
 
+  printf("WHAT IS HAPPENING %s\n", data);
+
   lseek(fd, -(*data), SEEK_END);
   char *buffer = calloc(1024, sizeof(char));
   read(fd, buffer, 1024);
@@ -71,7 +73,6 @@ int main() {
   shmdt(data);
   sb.sem_op = 1;
   semop(semd, &sb, 1);
-  close(fd);
 
   return 0;
 }
