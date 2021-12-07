@@ -51,7 +51,7 @@ int main() {
   fgets(new_data, 1024, stdin);
 
   // append new_data to the end of the file
-  lseek(fd, 0, SEEK_END);
+  // lseek(fd, 0, SEEK_END);
   write(fd, new_data, strlen(new_data));
   *data = strlen(new_data);
   printf("wrote to file %s\n", new_data);
