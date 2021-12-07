@@ -20,6 +20,9 @@ int main() {
   // open file
   int fd = open("temp.txt", O_RDWR | O_APPEND);
 
+  struct stat st;
+  stat("temp.txt", &st);
+
   // use lseek to move to the end of the file
   lseek(fd, *data, SEEK_END);
 
@@ -44,6 +47,7 @@ int main() {
   shmdt(data);
   sb.sem_op = 1;
   semop(semd, &sb, 1);
+  close(file);
 
   return 0;
 }
