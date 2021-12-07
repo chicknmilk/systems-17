@@ -45,7 +45,7 @@ void create() {
 
   close(file);
 
-  printf("create success!");
+  printf("create success!\n");
 }
 
 void rem() {

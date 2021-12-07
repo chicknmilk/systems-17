@@ -46,6 +46,8 @@ int main() {
 
   // use fgets to read a string from stdin
   char new_data[1024];
+
+  printf("Enter new line: ");
   fgets(new_data, 1024, stdin);
 
   // append new_data to the end of the file
@@ -53,7 +55,7 @@ int main() {
   write(fd, new_data, strlen(new_data));
   *data = strlen(new_data);
   printf("wrote to file %s\n", new_data);
-  
+
 
 
   shmdt(data);
