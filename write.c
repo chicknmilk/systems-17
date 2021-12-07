@@ -28,7 +28,7 @@ int main() {
   line[*data] = '\0';
 
   // print the last line
-  printf("%s\n", line);
+  printf("The previous entered line is: %s\n", line);
 
 
   // use fgets to read a string from stdin
@@ -41,7 +41,7 @@ int main() {
   lseek(fd, 0, SEEK_END);
   write(fd, new_data, strlen(new_data));
   *data = strlen(new_data);
-  printf("wrote to file %s\n", new_data);
+  printf("wrote "%s" to file\n", new_data);
 
 
   shmdt(data);
