@@ -22,9 +22,9 @@ int main(int argc, char *argv[]) {
 void create() {
   printf("creating file\n");
 
-  int semd = semget(SEMKEY, 1, IPC_CREAT | IPC_EXCL | 0644);
+  int semd = semget(SEM_KEY, 1, IPC_CREAT | IPC_EXCL | 0644);
   if (semd == -1) {
-    semd = semget(SEMKEY, 1, 0);
+    semd = semget(SEM_KEY, 1, 0);
   }
 
   union semun us;
@@ -33,9 +33,9 @@ void create() {
   printf("semctl returned %d\n", r);
 
   // create the shared memory segment
-  int shmd = shmget(SHMKEY, sizeof(int), IPC_CREAT | IPC_EXCL | 0644);
+  int shmd = shmget(SHM_KEY, sizeof(int), IPC_CREAT | IPC_EXCL | 0644);
   if (shmd == -1) {
-    shmd = shmget(SHMKEY, 0, 0);
+    shmd = shmget(SHM_KEY, 0, 0);
   }
 
   int file = open("tmp.txt", O_CREAT | O_EXCL | O_TRUNC, 0644);
@@ -51,17 +51,17 @@ void create() {
 void rem() {
   printf("removing file\n");
 
-  int semd = semget(SEMKEY, 0, 0);
+  int semd = semget(SEM_KEY, 0, 0);
   if (semd == -1) {
-    semd = semget(SEMKEY, 1, 0);
+    semd = semget(SEM_KEY, 1, 0);
   }
 
   // remove the shared memory segment
   semctl(semd, IPC_RMID, 0);
 
-  int shmd = shmget(SHMKEY, 0, 0);
+  int shmd = shmget(SHM_KEY, 0, 0);
   if (shmd == -1) {
-    shmd = shmget(SHMKEY, 1, 0);
+    shmd = shmget(SHM_KEY, 1, 0);
   }
 
   shmctl(shmd, IPC_RMID, 0);

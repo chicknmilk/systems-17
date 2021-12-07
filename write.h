@@ -11,5 +11,5 @@
 #include <errno.h>
 #include <fcntl.h>
 
-#define SEMKEY 24602
-#define SHMKEY 24603
+#define SEM_KEY 24602
+#define SHM_KEY 24603
