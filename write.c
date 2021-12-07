@@ -25,7 +25,6 @@ int main() {
 
   char line[1024];
   int str = read(fd, line, 1024);
-  line[*data] = '\0';
 
   // print the last line
   printf("The previous entered line is: %s\n", data);
