@@ -1,2 +1,7 @@
 # systems-17
-semaphore
+sema
+
+
+## issues
+- for some reason, appending isnt working??
+- when `./control -c` is run, it doesn't clear `tmp.txt`
