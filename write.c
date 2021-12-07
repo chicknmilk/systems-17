@@ -68,7 +68,6 @@ int main() {
   printf("Wrote to file!\n");
 
 
-
   shmdt(data);
   sb.sem_op = 1;
   semop(semd, &sb, 1);
