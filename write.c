@@ -42,6 +42,8 @@ int main() {
   *data = strlen(new_data);
   printf("wrote to file: %s", new_data);
 
+  close(fd);
+
 
   shmdt(data);
   sb.sem_op = 1;
