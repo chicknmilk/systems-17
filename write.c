@@ -18,7 +18,7 @@ int main() {
 
 
   // open file
-  int fd = open("temp.txt", O_RDWR | O_APPEND);
+  int fd = open("tmp.txt", O_RDWR | O_APPEND);
 
   // use lseek to move to the end of the file
   lseek(fd, -*data, SEEK_END);
